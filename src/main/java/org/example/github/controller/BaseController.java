@@ -7,7 +7,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 public class BaseController {
 
     void throwIfContentTypeNotSupported(String contentType) {
-        if (StringUtils.isNotBlank(contentType)) {
+        if (StringUtils.isNotBlank(contentType) && !StringUtils.equals("*/*", contentType)) {
             if (MediaType.APPLICATION_JSON_VALUE.equalsIgnoreCase(contentType)) return;
 
             throw new WebClientResponseException(406, "Unsupported content type. Only application/json is supported", null, null, null);
